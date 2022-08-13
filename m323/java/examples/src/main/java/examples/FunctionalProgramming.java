@@ -68,8 +68,8 @@ public class FunctionalProgramming {
 //
 //		numbers.forEach(value -> System.out.println(value));
 //		// parenthesis is optional, but only for one parameter lambdas.
-
-		numbers.forEach(System.out::println);
+//
+//		numbers.forEach(System.out::println);
 	}
 
 	// Method references: different options
