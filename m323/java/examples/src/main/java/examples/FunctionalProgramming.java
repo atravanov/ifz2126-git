@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 public class FunctionalProgramming {
 
 	public static void main(String[] args) {
-//		example_1();
+		example_1();
 //		example_2();
 //		example_3();
-		example_4();
-		example_5();
+//		example_4();
+//		example_5();
 	}
 
 	private static void example_1() {
