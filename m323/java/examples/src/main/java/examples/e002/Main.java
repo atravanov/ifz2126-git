@@ -48,6 +48,10 @@ public class Main {
 		// Klammer verwendet werden.
 		languages.forEach(lang-> System.out.println(lang));
 		
+		// oder
+		Consumer<String> consumer = lang -> System.out.println(lang);
+		languages.forEach(consumer);
+		
 		// Wird der Parameter nur durchgereicht kann Referenz auf die Methode
 		// übergeben werden.
 		languages.forEach(System.out::println);
