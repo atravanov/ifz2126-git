@@ -1,11 +1,12 @@
 package examples.e002;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
- * Modul 323, Externen und interne Iteration, Lambdas,
- * Interface Consumer, Funktionale Interfaces.
+ * Modul 323, Iteration, Consumer, Lambda Expressions
  */
 public class Main {
 	public static void main(String[] args) {
@@ -32,7 +33,7 @@ public class Main {
 			}	
 		});
 		
-		// Verwendung von Lambdas
+		// Verwendung von Lambda Expressions
 		languages.forEach((String lang)-> {
 			System.out.println(lang);
 		});
@@ -55,5 +56,6 @@ public class Main {
 		// Wird der Parameter nur durchgereicht kann Referenz auf die Methode
 		// übergeben werden.
 		languages.forEach(System.out::println);
+		
 	}
 }
