@@ -1,27 +1,35 @@
 # Beispiele
-## Inhalt
-- e001:Demonstriert den Unterschied zwischen dem **Imperativen** (WAS und WIE) und dem **Deklarativen** (WAS und nicht WIE) Progammier-Paradigma.
-- e002: Übersicht Externe und Interne Iterationen, **Consumer**, **Lambda Expressions**, Funktionen höherer Ordnung.
-- e003: Demonstriert den Unterschied zwischen dem **Imperativen** und **Funktionalen** Programmier Paradigma. Zusätzlich werden **mutable** und **immutable** Listen gezeigt. 
-- e004: Demonstriert die Anwendung von **Streams** (filter, map, reduce) und IntStreams (mapToInt, sum, max, min etc.)
-- e005 **Lazy Evaluation**
+## Package e001
+Demonstriert den Unterschied zwischen dem **Imperativen** (WAS und WIE) und dem **Deklarativen** (WAS und nicht WIE) Progammier-Paradigma.
 
-## Setup des Projekts
-### Setup Git Repositoy
+## Package e002
+Übersicht: Externe und Interne Iterationen, **Consumer**, **Lambda Expressions**, Funktionen höherer Ordnung.
+
+## Package e003
+Demonstriert den Unterschied zwischen dem **Imperativen** und **Funktionalen** Programmier Paradigma. Zusätzlich werden **mutable** und **immutable** Listen präsentiert. 
+
+## Package e004
+Demonstriert die Anwendung von **Streams** (`filter`-Methode, `map`-Methode, `reduce`-Methode) und IntStreams (`mapToInt`-Methode, `sum`-Methode etc.)
+
+## Package e005 
+**Lazy Evaluation**
+
+# Setup eines Projektes
+## Setup Git Repositoy
 1. Installiere [Git](https://git-scm.com/).
 1. Starte die git bash shell.
 1. Kreiere dein Arbeitsverzeichnis.
 1. Wechsle in dein Arbeitsverzeichnis.
-1. Klone das Repository.
+1. Klone das Repository mit folgendem Befehl:
 ```Bash
 git clone https://github.com/atravanov/ifz2126-git.git
 ```
 
-### Import des example Projekts nach Eclipse 
+## Import des gewünschten Projekts nach Eclipse 
 1. File -> Import -> Existing Maven Projects -> Next
 1. Selektiere das Root Verzeichnis des Projekts example (beinhaltet die Datei pom.xml) -> Finish
 
-### Aktualisierung des Repository
+### Aktualisierung der lokalen Files
 ```Bash
 git pull
 ```
@@ -177,4 +185,4 @@ Peer-to-Peer Austausch zwischen den Lernenden (z.B. Tischnachbarn oder in Kleing
 
 ## Benötigte Software
 
-aktuelles Eclipse + JDK17 + Zeal
+aktuelles Eclipse + JDK17
