@@ -23,9 +23,20 @@ public class Main {
 		// Imperativer Ansatz
 		double res = 0;
 		for (Integer number : numbers10) {
-			if (number % 2 == 0) {
-				res += Math.sqrt(res);
+			if (number % 3 == 0) {
+				res += Math.sqrt(number);
 			}
 		}
+		
+		System.out.println(res);
+		
+		// Funktionaler Ansatz
+		
+		res =numbers10.stream()
+			.filter(number -> number % 3 == 0 ) //Funktional (inkl.Deklarativ)
+			.mapToDouble(Math::sqrt) // Funktional (inkl. Dekarativ)
+			.sum();
+		
+		System.out.println(res);
 	}
 }

@@ -1,9 +1,7 @@
 package examples.e002;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * Modul 323, Iteration, Consumer, Lambda Expressions
