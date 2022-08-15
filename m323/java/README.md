@@ -1,18 +1,245 @@
 # Beispiele
 ## Package e001
 Demonstriert den Unterschied zwischen dem **Imperativen** (WAS und WIE) und dem **Deklarativen** (WAS und nicht WIE) Progammier-Paradigma.
+```Java
+package examples.e001;
+
+import java.util.List;
+
+/**
+ * Modul 323, Imperativer und Deklarativer Ansatz.
+ * <p>
+ * Demonstriert den Unterschied zwischen dem imperativen Ansatz (WAS und WIE)
+ * und dem deklarativen Ansatz (WAS und nicht WIE)
+ */
+public class Main {
+	public static void main(String[] args) {
+		List<String> languages = List.of("Java", "Javascript", "Go", "Scala", "C");
+
+		// Imperativer Ansatz
+		for (int i = 0; i < languages.size(); i++) {
+			if (languages.get(i).equals("Java")) {
+				System.out.println("I like Java");
+			}
+		}
+
+		// Deklarativer Ansatz
+		if (languages.contains("Java")) {
+			System.out.println("I like Java");
+		}
+	}
+}
+```
 
 ## Package e002
 Übersicht: Externe und Interne Iterationen, **Consumer**, **Lambda Expressions**, Funktionen höherer Ordnung.
+```Java
+package examples.e002;
 
+import java.util.List;
+import java.util.function.Consumer;
+
+/**
+ * Modul 323, Iteration, Consumer, Lambda Expressions
+ */
+public class Main {
+	public static void main(String[] args) {
+		List<String> languages = List.of("Java", "Javascript", "Go", "Scala", "C");
+		
+		// Externe Iteration
+		for (int i = 0; i < languages.size(); i++) {
+			System.out.println(languages.get(i));
+		}
+		
+		for (String lang: languages) {
+			System.out.println(lang);
+		}
+		
+		// Interne Iteration
+		Printer<String> printer = new Printer<>();
+		languages.forEach(printer);
+
+		// Consumer Interface ist ein Funtionales Interface. (= darf nur eine
+		// abstrakte Methode beinhalten).
+		languages.forEach(new Consumer<String>() {
+			public void accept(String t) {
+				System.out.println(t);
+			}	
+		});
+		
+		// Verwendung von Lambda Expressions
+		languages.forEach((String lang)-> {
+			System.out.println(lang);
+		});
+		
+		// Bei einem Statemet kann auf die geschweifte Klammer verzichtet werden.
+		languages.forEach((String lang)-> System.out.println(lang));
+		
+		// Compiler hat alle Information, Typ String muss nicht angegeben werden.
+		languages.forEach((lang)-> System.out.println(lang));
+		
+		// Falls nur ein Parameter übergeben wird, wird Klammer nicht benötigt.
+		// Falls kein Parameter oder mehrere Parameter benutzt werden, muss
+		// Klammer verwendet werden.
+		languages.forEach(lang-> System.out.println(lang));
+		
+		// oder
+		Consumer<String> consumer = lang -> System.out.println(lang);
+		languages.forEach(consumer);
+		
+		// Wird der Parameter nur durchgereicht kann Referenz auf die Methode
+		// übergeben werden.
+		languages.forEach(System.out::println);
+		
+	}
+}
+```
+```Java
+package examples.e002;
+
+import java.util.function.Consumer;
+
+public class Printer<T> implements Consumer<T> {
+	@Override
+	public void accept(T t) {
+		System.out.println(t);
+	}
+}
+```
 ## Package e003
 Demonstriert den Unterschied zwischen dem **Imperativen** und **Funktionalen** Programmier Paradigma. Zusätzlich werden **mutable** und **immutable** Listen präsentiert. 
+
+```Java
+package examples.e003;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		// Fixe Grösse versus dynamische Grösse einer Liste
+		// Mutable versus immutable Listen.
+		
+		// Dynamisch und Mutable
+		List<Integer> numbers = new ArrayList<>();
+		// Fix und Mutable
+		List<Integer> numbers5 = Arrays.asList(1, 2, 3, 4, 5);
+		// Fix und Immutable
+		List<Integer> numbers10 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+		// Imperativer Ansatz
+		double res = 0;
+		for (Integer number : numbers10) {
+			if (number % 3 == 0) {
+				res += Math.sqrt(number);
+			}
+		}
+		
+		System.out.println(res);
+		
+		// Funktionaler Ansatz
+		
+		res =numbers10.stream()
+			.filter(number -> number % 3 == 0 ) //Funktional (inkl.Deklarativ)
+			.mapToDouble(Math::sqrt) // Funktional (inkl. Deklarativ)
+			.sum();
+		
+		System.out.println(res);
+	}
+}
+```
 
 ## Package e004
 Demonstriert die Anwendung von **Streams** (`filter`-Methode, `map`-Methode, `reduce`-Methode) und IntStreams (`mapToInt`-Methode, `sum`-Methode etc.)
 
+```Java
+package examples.e004;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+/**
+ * Modul 323, Anwenung von Streams
+ * <p>
+ * Demonstriert die Anwendung von Streams (filter, map, reduce) 
+ * und IntStreams (mapToInt, sum, max, min etc.)
+ */
+public class Main {
+	
+	public static void main(String[] args) {
+		List<String> languages = List.of("Java", "Javascript", "Go", "Scala", "C");
+
+		// filter
+		languages.stream()
+		.filter(str -> str.contains("Java"))
+		.forEach(System.out::println);
+		
+		// map
+		languages.stream()
+		.filter(str -> str.contains("Java"))
+		.map(String::length)
+		.forEach(System.out::println);
+		
+		// reduce
+		var res = languages.stream()
+		.filter(str -> str.contains("Java"))
+		.map(String::length)
+		.reduce(0,(total, i) -> total + i );
+		
+		System.out.println(res);
+		
+		// sum
+		res = languages.stream()
+		.filter(str -> str.contains("Java"))
+		.mapToInt(String::length)
+		.sum();
+		
+		System.out.println(res);
+		
+		// Bemerkung: streams von primitiven Typen
+		System.out.println(IntStream.range(0,100).sum());
+		System.out.println(IntStream.range(0,100).max().orElse(0));
+		System.out.println(IntStream.range(0,100).min().orElse(0));
+	}
+}
+```
 ## Package e005 
 **Lazy Evaluation**
+```Java
+package examples.e005;
+
+import java.util.List;
+
+/**
+ * Modul 323, Lazy Evaluation
+ */
+public class Main {
+	public static boolean mod3(int number) {
+		System.out.println("mod3 wurde aufgerufen");
+		return number % 3 == 0;
+	}
+
+	public static int mult3(int number) {
+		System.out.println("mult3 wurde aufgerufen");
+		return number * 3;
+	}
+
+	public static void main(String[] args) {
+		List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+		numbers.stream().filter(Main::mod3).map(Main::mult3)
+		// .findFirst() // unkommentiere diese Zeile, was passiert?
+		;
+
+		System.out.println("Erledigt");
+	}
+}
+```
 
 # Setup eines Projektes
 ## Setup Git Repositoy
